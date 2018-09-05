@@ -1,13 +1,13 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import ViewBackgroundWeather from './app/screens';
+import Index from './app/screens/index';
 
 export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-          <ViewBackgroundWeather  style={{flex: 1}}/>
+          <Index  style={{flex: 1}}/>
       </View>
     );
   }
