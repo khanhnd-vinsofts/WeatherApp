@@ -13,18 +13,29 @@ export default class ViewTemperatureNow extends Component {
 
   render() {
     return (
-      <ImageBackground
-        style={{width:'100%', height: '100%'}}
-        source={uri = image}
-      >
-        <ViewWeatherNow />
-      </ImageBackground>
+      <View style={styles.wrapper}>
+          <View style={styles.layout}>
+
+              <ViewWeatherNow />
+          </View>
+          
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
     wrapper: {
-        flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      top: 90
+    },
+    layout: {
+      width: 350,
+      height: 150,
+      backgroundColor: '#000000',
+      opacity: 0.5,
+      borderRadius: 3,
     }
+    
 })
