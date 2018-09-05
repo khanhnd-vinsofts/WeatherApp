@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ImageBackground } from 'react-native';
 import ViewWeatherNow from '../components/ViewWeatherNow';
 
 
-const image = require('../images/fog_bg.jpg')
+const image = require('../images/clear_day_bg.jpg')
 export default class ViewBackgroundWeather extends Component {
   constructor(props) {
     super(props);
@@ -13,12 +13,12 @@ export default class ViewBackgroundWeather extends Component {
 
   render() {
     return (
-        <ImageBackground
-          style={{ width: '100%', height: '100%' }}
-          source={uri = image}
-        >
-          <ViewWeatherNow />
-        </ImageBackground>
+      <ImageBackground
+        style={{width:'100%', height: '100%'}}
+        source={uri = image}
+      >
+        <ViewWeatherNow />
+      </ImageBackground>
     );
   }
 }
@@ -26,7 +26,5 @@ export default class ViewBackgroundWeather extends Component {
 const styles = StyleSheet.create({
     wrapper: {
         flex: 1,
-       
-
     }
 })
