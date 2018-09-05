@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ImageBackground } from 'react-native';
 import ViewTemperatureNow from './ViewTemperatureNow';
-
+import ViewTemperatureTime from './ViewTemperatureTime';
 
 const image = require('../images/background/clear_day_bg.jpg')
-export default class ViewBackgroundWeather extends Component {
+export default class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
