@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import ViewWeatherNow from '../components/WeatherToday/ViewWeatherNow';
 
 
-const image = require('../images/background/clear_day_bg.jpg')
 export default class ViewTemperatureTime extends Component {
   constructor(props) {
     super(props);
@@ -13,12 +12,9 @@ export default class ViewTemperatureTime extends Component {
 
   render() {
     return (
-      <ImageBackground
-        style={{width:'100%', height: '100%'}}
-        source={uri = image}
-      >
-        <ViewWeatherNow />
-      </ImageBackground>
+      <View style={styles.wrapper}>
+
+      </View>
     );
   }
 }
