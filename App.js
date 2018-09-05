@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import ViewBackgroundWeather from './app/screens/ViewBackgroundWeather';
+import ViewBackgroundWeather from './app/screens';
 
 export default class App extends Component {
   render() {

@@ -13,6 +13,9 @@ export default class ViewWeatherNow extends Component {
   }
   componentWillMount() {
     this.fetchData();
+    this.interval = setInterval(()=>{
+
+    }, 180000)
   }
 
   fetchData = async () => {
@@ -24,22 +27,37 @@ export default class ViewWeatherNow extends Component {
       console.log(error);
     }
   }
+  _renderWeatherToDay(){
 
-  _renderTest = () => {
-    // let {data} = this.state;
-    // if(data.length >0){
-    //   return data.map( (val, key) =>{
-    //     <Text key={key}>{`${val.name.first} ${val.name.last}`}</Text>
-    //   })
-    // }
+  }
+
+  _renderWeatherToHour() {
+    let {data, hourNow} = this.state;
+    let date = new Date();
+    for(let i = hourNow; i< 24; i+3){
+
+    }
+    if(data.length >0){
+      console.log(data);
+      return data.map( (val, key) =>{
+         return <Text key={key}>{`${val.name.first} ${val.name.last}`}</Text>
+      })
+    }
     return null;
+  }
+
+  _renderWeatherToWeek(){
+
   }
 
   render() {
     return (
       <View style={styles.wrapper}>
           <View style={styles.layout}>
-              <FlatList 
+          {this._renderWeatherToDay()}
+          {this._renderWeatherToHour()}
+          {this._renderWeatherToWeek()}
+              {/* <FlatList 
                 data={this.state.data}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({item}) =>
@@ -47,11 +65,14 @@ export default class ViewWeatherNow extends Component {
                     {`${item.name.first} ${item.name.last}`}
                   </Text>
                 }
-              />
+              /> */}
               
           </View>
       </View>
     );
+  }
+  componentWillUnmount(){
+    clearInterval(this.interval);
   }
 }
 
