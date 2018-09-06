@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import FirstHourWeather from '../components/WeatherTimeToday/firstHourWeather';
-
-
+// import LineChartWeather from '../components/WeatherTimeToday/lineChartWeather';
 
 export default class ViewTemperatureTime extends Component {
     constructor(props) {
@@ -37,8 +36,8 @@ const styles = StyleSheet.create({
         height: 200,
         borderRadius: 3,
         flexDirection: 'column',
-        backgroundColor: '#000000',
-        opacity: 0.35,
+        backgroundColor: 'rgba(0, 0, 0, 0.3)',
+       
         
     },
     hourWeather: {
