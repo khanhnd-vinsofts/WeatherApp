@@ -40,7 +40,7 @@ export default class ViewWeatherNow extends Component {
     if(data.length >0){
       console.log(data);
       return data.map( (val, key) =>{
-         return <Text key={key}>{`${val.name.first} ${val.name.last}`}</Text>
+         return <Text style={styles.text} key={key}>{`${val.name.first} ${val.name.last}`}</Text>
       })
     }
     return null;
@@ -52,22 +52,10 @@ export default class ViewWeatherNow extends Component {
 
   render() {
     return (
-      <View style={styles.wrapper}>
-          <View style={styles.layout}>
+      <View style={styles.wrapper}>  
           {this._renderWeatherToDay()}
           {this._renderWeatherToHour()}
           {this._renderWeatherToWeek()}
-              {/* <FlatList 
-                data={this.state.data}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={({item}) =>
-                  <Text style={{color: '#ffffff'}}>
-                    {`${item.name.first} ${item.name.last}`}
-                  </Text>
-                }
-              /> */}
-              
-          </View>
       </View>
     );
   }
@@ -80,15 +68,10 @@ export default class ViewWeatherNow extends Component {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
-    
   },
-  layout: {
-    width: 350,
-    height: 150,
-    backgroundColor: '#000000',
-    opacity: 0.5,
-    borderRadius: 3,
+  text: {
+    color: '#ffffff',
   }
+  
 })

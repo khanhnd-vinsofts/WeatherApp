@@ -1,30 +1,51 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ImageBackground } from 'react-native';
-import ViewWeatherNow from '../components/WeatherToday/ViewWeatherNow';
+import { View, Text, StyleSheet } from 'react-native';
+import FirstHourWeather from '../components/WeatherTimeToday/firstHourWeather';
+import LineChartWeather from '../components/WeatherTimeToday/lineChartWeather';
 
 
-const image = require('../images/background/clear_day_bg.jpg')
 export default class ViewTemperatureTime extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+        };
+    }
 
-  render() {
-    return (
-      <ImageBackground
-        style={{width:'100%', height: '100%'}}
-        source={uri = image}
-      >
-        <ViewWeatherNow />
-      </ImageBackground>
-    );
-  }
+    render() {
+        return (
+            <View style={styles.wrapper}>
+                <View style={styles.layout}>
+                    <View style={styles.hourWeather}>
+                       <FirstHourWeather />
+                    </View>
+                    <View style={styles.lineChartWeather}>
+                        
+                    </View>
+                </View>
+            </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
     wrapper: {
-        flex: 1,
+        flex: 1,     
+    },
+    layout: {
+        marginTop: 102,
+        width: 350,
+        height: 200,
+        borderRadius: 3,
+        flexDirection: 'column',
+        backgroundColor: '#000000',
+        opacity: 0.35,
+        
+    },
+    hourWeather: {
+        flex: 1,    
+        
+    },
+    lineChartWeather: {
+        flex: 2,    
     }
 })
