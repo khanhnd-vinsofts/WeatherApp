@@ -16,9 +16,10 @@ export default class ViewTemperatureTime extends Component {
                 <View style={styles.layout}>
                     <View style={styles.hourWeather}>
                        <FirstHourWeather />
+                      
                     </View>
                     <View style={styles.lineChartWeather}>
-                        
+                        {/* <LineChartWeather /> */}
                     </View>
                 </View>
             </View>
@@ -33,18 +34,19 @@ const styles = StyleSheet.create({
     layout: {
         marginTop: 102,
         width: 350,
-        height: 200,
+        height: 220,
         borderRadius: 3,
         flexDirection: 'column',
-        backgroundColor: 'rgba(0, 0, 0, 0.3)',
+        backgroundColor: 'rgba(0, 0, 0, 0.4)',
        
         
     },
     hourWeather: {
-        flex: 1,    
+        flex: 2, 
+        
         
     },
     lineChartWeather: {
-        flex: 2,    
+        flex: 3,    
     }
 })
