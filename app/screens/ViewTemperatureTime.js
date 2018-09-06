@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import FirstHourWeather from '../components/WeatherTimeToday/firstHourWeather';
-import LineChartWeather from '../components/WeatherTimeToday/lineChartWeather';
+
 
 
 export default class ViewTemperatureTime extends Component {
