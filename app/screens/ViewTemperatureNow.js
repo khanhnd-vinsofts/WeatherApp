@@ -23,7 +23,7 @@ export default class ViewTemperatureNow extends Component {
                         </View>
                         <View style={styles.inforWeather}>
                             <Image style={styles.iconWeather} source={require('../images/icon/ic_sun_max.png')}></Image>
-                            <Text style={{color: "#ffffff", fontSize: 12, textAlign: 'center',}}>Ẩm ướt & Trời nhiều mây</Text>
+                            <Text style={{color: "#ffffff", fontSize: 12, textAlign: 'center', fontStyle: 'italic'}}>Ẩm ướt & Trời nhiều mây</Text>
                         </View>
                     </View>
                     <View style={styles.bottomTemperature}>
@@ -71,8 +71,7 @@ const styles = StyleSheet.create({
     },
     textDate: {
         color: "#ffffff",
-        fontWeight: 'bold',
-        fontSize: 18,
+        fontSize: 15,
     },
     textTime: {
         color: "#ffffff",
