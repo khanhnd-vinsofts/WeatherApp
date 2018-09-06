@@ -6,6 +6,7 @@ import Index from './app/screens/index';
 export default class App extends Component {
   render() {
     return (
+      
       <View style={styles.container}>
           <Index  style={{flex: 1}}/>
       </View>
