@@ -46,8 +46,7 @@ const styles = StyleSheet.create({
     layout: {
         width: 350,
         height: 150,
-        backgroundColor: '#000000',
-        opacity: 0.5,
+        backgroundColor: 'rgba(0, 0, 0, 0.3)',
         borderRadius: 3,
         flexDirection: 'column',
     },
