@@ -42,9 +42,9 @@ const styles = StyleSheet.create({
         
     },
     hourWeather: {
-        flex: 2,   
+        flex: 1,  
     },
     lineChartWeather: {
-        flex: 3,    
+        flex: 2,    
     }
 })
