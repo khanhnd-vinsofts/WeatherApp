@@ -19,7 +19,7 @@ var weather = [
     },
     {
         hour: "09:00",
-        uri: require('../images/icon/ic_sun_min.png'),
+        uri: require('../images/icon/ic_cloudy_min.png'),
         icon: require('../images/icon/ic_rain_probability.png'),
         ranny: 27
     },

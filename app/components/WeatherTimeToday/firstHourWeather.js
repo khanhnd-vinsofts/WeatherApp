@@ -25,7 +25,7 @@ class HorizontalFlatListItem extends Component {
                     <Text style={{
                         fontSize: 13,
                         color: 'white',
-                        margin: 5,
+                        top: 5,
                         left: 7
 
                     }}>{this.props.item.hour}</Text>
@@ -34,23 +34,25 @@ class HorizontalFlatListItem extends Component {
                     style={{
                         width: 20,
                         height: 20,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        top: 30,
+                        right: 3,
+                        top: 25,
                         
                     }}
+                    resizeMode= "contain"
                     source={this.props.item.uri}
                 />
                 <Text style={{
                     fontSize: 9,
                     color: 'white',
-                    top: 32
+                    right: 3,
+                    top: 30
                 }}>
                     <Image 
                         style={{
-                            width: 12,
-                            height: 15.5,
+                            width: 13,
+                            height: 13,
                         }}
+                        resizeMode= "contain"
                         source={this.props.item.icon}
                     />
                     {this.props.item.ranny}%

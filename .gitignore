@@ -56,4 +56,6 @@ buck-out/
 *.jsbundle
 package.json
 package-lock.json
+android/
+yarn.lock
 .gitignore
