@@ -66,12 +66,13 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     container: {
-        flex: 1
+        flex: 1,
+        left: 15
     },
     text: {
         color: '#ffffff',
-        fontSize: 14,
-        top: 10,
+        fontSize: 13,
+        top: 20,
         
     },
     text1: {

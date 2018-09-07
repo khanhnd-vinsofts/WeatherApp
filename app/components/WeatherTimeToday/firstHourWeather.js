@@ -49,7 +49,7 @@ class HorizontalFlatListItem extends Component {
                     <Image 
                         style={{
                             width: 12,
-                            height: 15,
+                            height: 15.5,
                         }}
                         source={this.props.item.icon}
                     />
