@@ -1,35 +1,70 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
-import data from '../../server/HorizontalData.json';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, Image } from 'react-native';
+import {weather} from '../../server/HorizontalData';
 
-
-
-export default class FirstHourWeather extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-          isLoading: true,
-          dataSource: [],
-        };
-      }
-      componentWillMount() {
-        this.setState({
-            isLoading: false,
-            dataSource: data.weather,
-        });
-      }
-    
-  render() {
-        if(this.state.isLoading) {
-            return(
-                <View style={{flex: 1, padding: 20}}>
-                    <ActivityIndicator />
-                </View>
-            )
-        }
-
+class HorizontalFlatListItem extends Component {
+    render() {
         return (
+            <View
+                style={{
+                    flex: 1,
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    width: 52,
+                    
+                }}>
+                <TouchableOpacity 
+                    style={{
+                        position: 'absolute',
+                        top: 0,
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                    }}
+                >
+                    <Text style={{
+                        fontSize: 13,
+                        color: 'white',
+                        margin: 5,
+                        left: 7
+
+                    }}>{this.props.item.hour}</Text>
+                </TouchableOpacity>
+                <Image 
+                    style={{
+                        width: 20,
+                        height: 20,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        top: 30,
+                        
+                    }}
+                    source={this.props.item.uri}
+                />
+                <Text style={{
+                    fontSize: 9,
+                    color: 'white',
+                    top: 32
+                }}>
+                    <Image 
+                        style={{
+                            width: 12,
+                            height: 15,
+                        }}
+                        source={this.props.item.icon}
+                    />
+                    {this.props.item.ranny}%
+                </Text>
+
+            </View>
+        );
+    }
+}
+
+export default class FirstHourWeather extends Component { 
+
+  render() {
+    return (
             <View style={styles.constainer}>
                 <Text style={styles.text}>24 Hour Next</Text>
                 <View style={{ height: 80 }}>
@@ -37,42 +72,15 @@ export default class FirstHourWeather extends Component {
                     <FlatList
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
-                        data={this.state.dataSource}
+                        data={weather}
                         keyExtractor={(item, index) => index.toString()}
-                        renderItem={({ item }) => {
+                        renderItem={({ item, index }) => {
                             return (
-                                <View style={{
-                                    flex: 1,
-                                    flexDirection: 'column',
-                                    alignItems: 'center',
-                                    width: 60,
-                                    right: 5
+                                <HorizontalFlatListItem item={item} index={index} parentFlatList={this}>
 
-                                }}>
-                                    <Text style={{
-                                        fontSize: 13,                                     
-                                        color: 'white',
-                                        margin: 5,
-                                        top: 2
-                                    }}>
-                                        {item.hour}
-                                    </Text>
-                                    <Text style={{
-                                        fontSize: 13,
-                                        color: 'white',
-                                        margin: 2
-                                    }}>
-                                        {item.uri}
-                                    </Text>
-                                    <Text style={{
-                                        fontSize: 13,
-                                        color: 'white',
-                                        margin: 2
-                                    }}>
-                                        {item.icon}
-                                    </Text>
-                                </View>
-                            );
+                                </HorizontalFlatListItem>
+                              
+                            )
                         }}
                     >
 
@@ -90,7 +98,7 @@ const styles = StyleSheet.create({
     text: {
         top:3,
         left:263,
-        fontSize: 14,
+        fontSize: 13,
         color: '#ffffff'
     }
 });

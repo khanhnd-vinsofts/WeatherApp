@@ -3,8 +3,9 @@ import { View, Text, StyleSheet, ImageBackground, ScrollView } from 'react-nativ
 import ViewTemperatureNow from './ViewTemperatureNow';
 import ViewTemperatureTime from './ViewTemperatureTime';
 import ViewTemperatureDay from './ViewTemperatureDay';
+import ViewDetailWeather from './ViewDetailWeather'
 
-const image = require('../images/background/clear_day_bg.jpg')
+const image = require('../images/background/bg_night.jpg')
 export default class Index extends Component {
 	constructor(props) {
 		super(props);
@@ -31,6 +32,9 @@ export default class Index extends Component {
 					</View>
 					<View>
 						<ViewTemperatureDay></ViewTemperatureDay>
+					</View>
+					<View style={styles.layout1}>
+						<ViewDetailWeather />
 					</View>
 				</ScrollView>
 			</ImageBackground>
