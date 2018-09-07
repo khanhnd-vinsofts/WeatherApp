@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     layout: {
         marginTop: 102,
         width: 350,
-        height: 220,
+        height: 250,
         borderRadius: 3,
         flexDirection: 'column',
         backgroundColor: 'rgba(0, 0, 0, 0.4)',
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     },
     hourWeather: {
         flex: 2, 
-        
+        backgroundColor: 'black'
         
     },
     lineChartWeather: {
