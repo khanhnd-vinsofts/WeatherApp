@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import FirstHourWeather from '../components/WeatherTimeToday/firstHourWeather';
-// import LineChartWeather from '../components/WeatherTimeToday/lineChartWeather';
+import LineChartScreen from '../components/WeatherTimeToday/lineChartWeather';
 
 export default class ViewTemperatureTime extends Component {
     constructor(props) {
@@ -16,10 +16,9 @@ export default class ViewTemperatureTime extends Component {
                 <View style={styles.layout}>
                     <View style={styles.hourWeather}>
                        <FirstHourWeather />
-                      
                     </View>
                     <View style={styles.lineChartWeather}>
-                        {/* <LineChartWeather /> */}
+                        <LineChartScreen />
                     </View>
                 </View>
             </View>
@@ -42,9 +41,10 @@ const styles = StyleSheet.create({
         
     },
     hourWeather: {
-        flex: 2,   
+        flex: 1,  
     },
     lineChartWeather: {
-        flex: 3,    
+        flex: 2, 
+        
     }
 })

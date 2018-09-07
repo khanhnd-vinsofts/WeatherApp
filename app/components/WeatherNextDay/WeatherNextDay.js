@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList, ActivityIndicator, Image } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
 export default class WeatherNextDay extends Component {
 
@@ -9,13 +10,13 @@ export default class WeatherNextDay extends Component {
             listData: [
                 {
                     name: "TH 2",
-                    image: require('../../images/icon/ic_sun_min.png'),
+                    image: require('../../images/icon/ic_fog_max.png'),
                     icon: require('../../images/icon/ic_rain_probability.png'),
                     ratio: 11
                 },
                 {
                     name: "TH 3",
-                    image: require('../../images/icon/ic_sun_min.png'),
+                    image: require('../../images/icon/ic_partly_cloudy_day_max.png'),
                     icon: require('../../images/icon/ic_rain_probability.png'),
                     ratio: 90
                 },
@@ -33,13 +34,13 @@ export default class WeatherNextDay extends Component {
                 },
                 {
                     name: "TH 6",
-                    image: require('../../images/icon/ic_sun_min.png'),
+                    image: require('../../images/icon/ic_partly_cloudy_day_max.png'),
                     icon: require('../../images/icon/ic_rain_probability.png'),
                     ratio: 9
                 },
                 {
                     name: "TH 7",
-                    image: require('../../images/icon/ic_sun_min.png'),
+                    image: require('../../images/icon/ic_five_star.png'),
                     icon: require('../../images/icon/ic_rain_probability.png'),
                     ratio: 12
                 },
@@ -71,7 +72,7 @@ export default class WeatherNextDay extends Component {
                                     marginTop: 10,
                                     flexDirection: 'column',
                                     alignItems: 'center',
-                                    width: 70,
+                                    width: 55,
                                 }}>
                                     <View style={{
                                         width: 50,
@@ -94,21 +95,27 @@ export default class WeatherNextDay extends Component {
                                     <Image style={{
                                         width: 20,
                                         height: 20,
-                                        marginTop:5
-                                    }} source={item.image}></Image>
+                                        marginTop: 5
+                                    }} source={item.image} resizeMode="contain"></Image>
                                     <Text style={{
                                         fontSize: 9,
                                         color: 'white',
                                     }}>
                                         <Image 
                                             style={{
-                                                width: 12,
-                                                height: 15,
+                                                width: 13,
+                                                height: 13,
                                             }}
                                             source={item.icon}
                                         />
                                         {item.ratio}%
                                     </Text>
+                                    <View style={{
+                                    }}>
+                                        <Text>11</Text>
+                                        <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={{width: 5, height: 10}}></LinearGradient>
+                                        <Text>0</Text>
+                                    </View>
                                 </View>
                             );
                         }}
