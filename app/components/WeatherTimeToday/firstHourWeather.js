@@ -31,8 +31,9 @@ export default class FirstHourWeather extends Component {
 
         return (
             <View style={styles.constainer}>
+                <Text style={styles.text}>24 Hour Next</Text>
                 <View style={{ height: 80 }}>
-                   
+                
                     <FlatList
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
@@ -45,21 +46,30 @@ export default class FirstHourWeather extends Component {
                                     flexDirection: 'column',
                                     alignItems: 'center',
                                     width: 60,
+                                    right: 5
 
                                 }}>
                                     <Text style={{
                                         fontSize: 13,                                     
                                         color: 'white',
-                                        margin: 10
+                                        margin: 5,
+                                        top: 2
                                     }}>
                                         {item.hour}
                                     </Text>
                                     <Text style={{
                                         fontSize: 13,
                                         color: 'white',
-                                        margin: 5
+                                        margin: 2
                                     }}>
                                         {item.uri}
+                                    </Text>
+                                    <Text style={{
+                                        fontSize: 13,
+                                        color: 'white',
+                                        margin: 2
+                                    }}>
+                                        {item.icon}
                                     </Text>
                                 </View>
                             );
@@ -76,5 +86,11 @@ const styles = StyleSheet.create({
     constainer: {
         flex: 1,
         flexDirection: 'column',
+    },
+    text: {
+        top:3,
+        left:263,
+        fontSize: 14,
+        color: '#ffffff'
     }
 });

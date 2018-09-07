@@ -2,39 +2,48 @@
  "weather" : [
     {
         "hour": "00:00",
-        "uri": "sun"
+        "uri": "sun",
+        "icon": "mua"
     },
     {
         "hour": "03:00",
-        "uri": "sun"
+        "uri": "sun",
+        "icon": "mua"
     },
     {
         "hour": "06:00",
-        "uri": "sun"
+        "uri": "sun",
+        "icon": "mua"
     },
     {
         "hour": "09:00",
-        "uri": "sun"
+        "uri": "sun",
+        "icon": "mua"
     },
     {
         "hour": "12:00",
-        "uri": "sun"
+        "uri": "sun",
+        "icon": "mua"
     },
     {
         "hour": "15:00",
-        "uri": "sun"
+        "uri": "sun",
+        "icon": "mua"
     },
     {
         "hour": "18:00",
-        "uri": "sun"
+        "uri": "sun",
+        "icon": "mua"
     },
     {
         "hour": "21:00",
-        "uri": "sun"
+        "uri": "sun",
+        "icon": "mua"
     },
     {
         "hour": "24:00",
-        "uri": "sun"
+        "uri": "sun",
+        "icon": "mua"
     }
 ]
 }
