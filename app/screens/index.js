@@ -30,7 +30,7 @@ export default class Index extends Component {
 					<View style={styles.layout1}>
 						<ViewTemperatureTime />
 					</View>
-					<View>
+					<View style={styles.layout1}>
 						<ViewTemperatureDay></ViewTemperatureDay>
 					</View>
 					<View style={styles.layout1}>
