@@ -1,40 +1,70 @@
 {
- "weather" : [
-    {
-        "hour": "00:00",
-        "uri": "sun"
-    },
-    {
-        "hour": "03:00",
-        "uri": "sun"
-    },
-    {
-        "hour": "06:00",
-        "uri": "sun"
-    },
-    {
-        "hour": "09:00",
-        "uri": "sun"
-    },
-    {
-        "hour": "12:00",
-        "uri": "sun"
-    },
-    {
-        "hour": "15:00",
-        "uri": "sun"
-    },
-    {
-        "hour": "18:00",
-        "uri": "sun"
-    },
-    {
-        "hour": "21:00",
-        "uri": "sun"
-    },
-    {
-        "hour": "24:00",
-        "uri": "sun"
-    }
-]
+    "weather": [
+        {
+            "hour": "00:00",
+            "uri": "sun"
+        },
+        {
+            "hour": "03:00",
+            "uri": "sun"
+        },
+        {
+            "hour": "06:00",
+            "uri": "sun"
+        },
+        {
+            "hour": "09:00",
+            "uri": "sun"
+        },
+        {
+            "hour": "12:00",
+            "uri": "sun"
+        },
+        {
+            "hour": "15:00",
+            "uri": "sun"
+        },
+        {
+            "hour": "18:00",
+            "uri": "sun"
+        },
+        {
+            "hour": "21:00",
+            "uri": "sun"
+        },
+        {
+            "hour": "24:00",
+            "uri": "sun"
+        }
+    ],
+    "weather_of_the_day": [
+        {
+            "the_day_of_weak": "TH 2",
+            "icon": "../images/icon/ic_cloudy_max.png"
+        },
+        {
+            "the_day_of_weak": "TH 3",
+            "icon": "../images/icon/ic_cloudy_max.png"
+        },
+        {
+            "the_day_of_weak": "TH 4",
+            "icon": "../images/icon/ic_cloudy_max.png"
+        },
+        {
+            "the_day_of_weak": "TH 5",
+            "icon": "../images/icon/ic_cloudy_max.png"
+        },
+        {
+            "the_day_of_weak": "TH 6",
+            "icon": "../images/icon/ic_cloudy_max.png"
+        },
+        {
+            "the_day_of_weak": "TH 7",
+            "icon": "../images/icon/ic_cloudy_max.png"
+        },
+        {
+            "the_day_of_weak": "CN",
+            "icon": "../images/icon/ic_cloudy_max.png"
+        }
+    ]
 }
