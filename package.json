@@ -10,11 +10,8 @@
     "immutability-helper": "^2.7.1",
     "react": "16.4.1",
     "react-native": "0.56.0",
-<<<<<<< HEAD
     "react-native-linear-gradient": "^2.4.2"
-=======
     "react-native-charts-wrapper": "^0.4.4"
->>>>>>> 27439f9e4d2b3e787fcdc138b333ba6d577f5356
   },
   "devDependencies": {
     "babel-jest": "23.4.2",
