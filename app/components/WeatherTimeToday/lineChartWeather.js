@@ -1,84 +1,141 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import d3 from 'd3';
-import Svg from 'react-native-svg';
+import React from "react";
+import Svg, {G, Line, Path, Text} from "react-native-svg";
+import * as scale from "d3-scale";
+import * as shape from "d3-shape";
+import * as array from "d3-array";
+import PropTypes from "prop-types";
 
-export default class LineChartWeather extends Component {
-  getValueDomain = () => {
-    var _max = [];
-    var _min = [];
-    this.props.data.map((item, index) => {
-      _max.push(d3.max(item));
-      _min.push(d3.min(item));
-    });
-    return [d3.max(_max), d3.min(_min)];
-  }
-  getPathD = (data) => {
-    var x = d3.scale.linear().domain([0, data.length - 1]).range([6, this.props.width - 6]);
-    var y = d3.scale.linear().domain(this.getValueDomain()).range([6, this.props.height - 6]);
-    var line = d3.svg.line().x(function(d,i) { 
-            return x(i); 
-        }).y(function(d) { 
-            return y(d);
-        })
-    .interpolate("cardinal");
-    return line(data);
-  }
-  paths = () => {
-    var that = this;
-    return this.props.data.map((item, index) => {
-      return (
-        <Path fill="none" stroke={that.props.lineColors[index]} strokeWidth="2" strokeMiterlimit="10"
-          d={that.getPathD(item)} />);
-    });
-  }
-  points = () => {
-    var that = this;
-    if(this.props.data.length > 1){
-      var x = d3.scale.linear().domain([0, this.props.data[0].length - 1]).range([6, this.props.width - 6]);
-      var y = d3.scale.linear().domain(this.getValueDomain()).range([6, this.props.height - 6]);
-      var paths = [];
-      this.props.data.map((item, index) => {
-        item.map((point, _index) => {
-          var cx = x(_index);
-          var cy = y(point);
-          var d = "M " + cx + " " + cy + " m -3,0 a 3,3 0 1,0 6,0 a 3,3 0 1,0 -6,0";
-          paths.push(<Path fill={that.props.pointFillColors[index]} 
-                      stroke={that.props.pointStrokeColors[index]} 
-                      strokeWidth="1" strokeMiterlimit="10" 
-                      d={d} />);
-        });
-      });
-      return paths;
-    }
-  }
-  svg = () => {
-    return (<Svg width={this.props.width} height={this.props.height} forceUpdate="0" 
-            style={{
-                width: this.props.width, 
-                height: this.props.height,}}>
-            {this.paths()}
-            {this.points()}
-        </Svg>);
-  }
-  render() {
-    if(this.props.data){
-      return(
-        <View style={{
-                  position: 'absolute',
-                  backgroundColor:'transparent',
-                  top: this.props.top,
-                }}>
-          {this.svg()}
-        </View>);
-    }else{
-      return(
-        <View style={{
-                  position: 'absolute',
-                  backgroundColor:'transparent',
-                  top: this.props.top,
-                }}>
-        </View>);
-    }
-  }
-}
+const d3 = {
+  scale,
+  shape,
+  array
+};
+const {number, string, arrayOf, instanceOf} = PropTypes;
+const object = PropTypes.shape;
+
+
+const LineChart = (props) => {
+  const {size, series, xAxis, yAxis, margin} = props;
+
+  let allData = [];
+  series.forEach(s => {allData = allData.concat(s.data)});
+
+  const maxInSeries = array.max(allData);
+  const minInSeries = array.min(allData);
+
+  const y = scale.scaleLinear().domain([minInSeries, maxInSeries])
+    .range([margin, size.height - margin]);
+
+  const x = scale.scaleLinear().domain([0, allData.length])
+    .range([margin, size.width - margin]);
+
+  const line = d3.shape.line()
+    .x(function (d, i) {
+      return x(i);
+    })
+    .y(function (d) {
+      return -1 * y(d);
+    }).curve(d3.shape.curveNatural);
+
+  const lines = series.map((serie, index) => {
+    return (
+      <Path
+        key={index}
+        fill="none"
+        strokeWidth={serie.width}
+        strokeOpacity={serie.opacity}
+        stroke={serie.color}
+        d={line(serie.data)}/>
+    );
+  });
+
+  const yLabels = y.ticks(yAxis.ticks).map((tick, index) => {
+    return (
+      <G key={index}>
+        <Text x={-10} y={-1 * y(tick)} dy="-5">{tick}</Text>
+      </G>
+    );
+  });
+
+  const xLabels = x.ticks(xAxis.ticks).filter((t) => t !== 0).map((tick, index) => {
+    return (
+      <G key={index}>
+        <Text x={x(tick)} y={-1} dy="-20">{tick}</Text>
+      </G>
+    );
+  });
+
+  return (
+    <Svg width={size.width + 20} height={size.height + 20} fill="none">
+      <G x="10" y={size.height}>
+        {lines}
+        <Line x1={x(0)} x2={x(size.width)} y1={-1 * y(0)} y2={-1 * y(0)} stroke="red"
+              strokeWidth="2"/>
+        <Line x1={x(0)} x2={x(0)} y1={-1 * y(minInSeries)} y2={-1 * y(maxInSeries)}
+              stroke="red"
+              strokeWidth="2"/>
+        {yLabels}
+        {xLabels}
+      </G>
+    </Svg>
+  );
+};
+
+LineChart.propTypes = {
+  size: object({
+    width: number.isRequired,
+    height: number.isRequired
+  }).isRequired,
+  xAxis: object({
+    type: string.isRequired,
+    start: instanceOf(Date),
+    end: instanceOf(Date),
+    ticks: number
+  }),
+  margin: number,
+  yAxis: object({
+    ticks: number
+  }),
+  series: arrayOf(object({
+    data: arrayOf(number),
+    color: string,
+    name: string,
+    width: number,
+    opacity: number
+  }))
+};
+
+LineChart.defaultProps = {
+  size: {
+    width: 300,
+    height: 160
+  },
+  xAxis: {
+    type: "Date",
+    start: new Date(),
+    end: new Date("October 13, 2018 11:47:00"),
+    ticks: 5
+  },
+  yAxis: {
+    ticks: 5
+  },
+  margin: 10,
+  series: [
+    {
+      data: [4, 7, 0, 4, 7, 0, 4, 7, 0, 4, 8, 4, 7, 29, 22,2,2,58],
+      color: "#620b79",
+      name: "Serie 0",
+      width: 2,
+      opacity: 0.4
+    },
+    {
+      data: [-10, 6, 8, 2, 3, 5, 4, 7, 0, 4, 7, 4, 7, 55,1,1,2],
+      color: "#791a22",
+      name: "Serie 0",
+      width: 2,
+      opacity: 1
+    },
+  ]
+};
+
+export default LineChart;
