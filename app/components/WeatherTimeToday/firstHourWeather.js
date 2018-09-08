@@ -45,7 +45,7 @@ class HorizontalFlatListItem extends Component {
                     fontSize: 9,
                     color: 'white',
                     right: 3,
-                    top: 30
+                    top: 25
                 }}>
                     <Image 
                         style={{
