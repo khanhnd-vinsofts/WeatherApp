@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         height: 350,
         borderRadius: 3,
         flexDirection: 'row',
-        backgroundColor: 'rgba(0, 0, 0, 0.4)', 
+        backgroundColor: 'rgba(0, 0, 0, 0.3)', 
         top: 13
     },
     leftIcon: {
