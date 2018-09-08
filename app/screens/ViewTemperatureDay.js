@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     },
     temperatureDay: {
         width: 350,
-        height: 250,
+        height: 'auto',
         backgroundColor: 'rgba(0, 0, 0, 0.3)',
         borderRadius: 3,
         flexDirection: 'column',
