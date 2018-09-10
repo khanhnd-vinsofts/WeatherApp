@@ -32,13 +32,7 @@ public class MainApplication extends Application implements ReactApplication {
 
 
           new MainReactPackage(),
-
-            new LinearGradientPackage()
-
             new LinearGradientPackage(),
-            new MPAndroidChartPackage()
-
-          new MainReactPackage(),
             new SvgPackage()
 
       );
