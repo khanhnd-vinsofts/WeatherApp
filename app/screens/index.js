@@ -5,7 +5,7 @@ import ViewTemperatureTime from './ViewTemperatureTime';
 import ViewTemperatureDay from './ViewTemperatureDay';
 import ViewDetailWeather from './ViewDetailWeather'
 
-const image = require('../images/background/bg_night.jpg')
+const image = require('../images/background/nobg.jpg')
 export default class Index extends Component {
 	constructor(props) {
 		super(props);

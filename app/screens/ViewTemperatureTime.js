@@ -3,6 +3,9 @@ import { View, Text, StyleSheet } from 'react-native';
 import FirstHourWeather from '../components/WeatherTimeToday/firstHourWeather';
 // import Chart from '../components/WeatherTimeToday/lineChartWeather';
 
+// import SvgExample from '../components/WeatherTimeToday/lineChartWeather';
+
+
 export default class ViewTemperatureTime extends Component {
     constructor(props) {
         super(props);
@@ -18,7 +21,7 @@ export default class ViewTemperatureTime extends Component {
                        <FirstHourWeather />
                     </View>
                     <View style={styles.lineChartWeather}>
-                        {/* <Chart /> */}
+                        {/* <SvgExample /> */}
                     </View>
                 </View>
             </View>
@@ -36,7 +39,7 @@ const styles = StyleSheet.create({
         height: 250,
         borderRadius: 3,
         flexDirection: 'column',
-        backgroundColor: 'rgba(0, 0, 0, 0.4)',
+        backgroundColor: 'rgba(0, 0, 0, 0.3)',
        
         
     },
