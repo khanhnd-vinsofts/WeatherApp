@@ -73,8 +73,8 @@ export default class WeatherNextDay extends Component {
         return (
             <View style={styles.constainer}>
                 <View>
-                    <View style={{ paddingTop: 7}}>
-                        <Text style={{ color: "#ffffff", fontSize: 12, textAlign: 'center', fontStyle: 'italic' }}>Chạm vào một ngày để xem dự báo theo giờ</Text>
+                    <View style={{ paddingTop: 7 }}>
+                        <Text style={styles.title}>Chạm vào một ngày để xem dự báo theo giờ</Text>
                     </View>
                     <FlatList
                         horizontal={true}
@@ -126,16 +126,16 @@ export default class WeatherNextDay extends Component {
                                     </Text>
                                     <View style={{
                                         alignItems: 'center',
-                                        marginTop: 5
+                                        marginTop: 5,
+                                        flexDirection: 'column',
+                                        justifyContent: 'flex-end',
+                                        height: 260
                                     }}>
                                         <Text style={{ fontSize: 12, color: "#ffffff", marginTop: 10, marginBottom: 7 }}>{item.max}°</Text>
-                                        <View style={{
-                                            flexDirection: 'column',
-                                            justifyContent: 'flex-end'
-                                        }}>
+                                        <View>
                                             <LinearGradients max={item.max} min={item.min}></LinearGradients>
                                         </View>
-                                        <Text style={{ fontSize: 12, color: "#ffffff", marginTop: 10, marginBottom: 3}}>{item.min}°</Text>
+                                        <Text style={{ fontSize: 12, color: "#ffffff", marginTop: 10, marginBottom: 3 }}>{item.min}°</Text>
                                     </View>
                                 </View>
                             );
@@ -148,7 +148,7 @@ export default class WeatherNextDay extends Component {
                         justifyContent: 'flex-end',
                         alignItems: 'center'
                     }}>
-                        <Text style={{color: "orange", fontSize: 14, textDecorationLine: "underline", paddingRight: 10}}>more details</Text>
+                        <Text style={{ color: "orange", fontSize: 14, textDecorationLine: "underline", paddingRight: 10, paddingBottom: 2 }}>more details</Text>
                     </View>
                 </View>
             </View>
@@ -159,5 +159,11 @@ const styles = StyleSheet.create({
     constainer: {
         flex: 1,
         flexDirection: 'column',
+    },
+    title: {
+        color: "#ffffff", 
+        fontSize: 12, 
+        textAlign: 'center', 
+        fontStyle: 'italic'
     }
 });
