@@ -1,40 +1,209 @@
-
-import React,{Component} from 'react';
-import Svg,{
-    Circle,
-    Ellipse,
-    G,
-    LinearGradient,
-    RadialGradient,
-    Line,
+import React, {Component} from 'react';
+import {Dimensions, LayoutAnimation, StyleSheet, View, TouchableWithoutFeedback} from 'react-native';
+//If you have not Expo import https://github.com/react-native-community/react-native-svg
+import Svg, {
+    G, 
     Path,
-    Polygon,
-    Polyline,
-    Rect,
-    Symbol,
-    Text,
-    Use,
-    Defs,
-    Stop
+    Polygon, 
 } from 'react-native-svg';
- 
-export default class SvgExample extends Component {
+
+export default class LineChart extends Component {
+    constructor(props) {
+        super(props);
+        const {
+            width,
+            height,
+            chart
+        } = this.props;
+        this.state = {
+            minValue: 0,
+            maxValue: 0,
+            variation: 0,
+            margin: chart.options.margin,
+            labelWidth: chart.options.labelWidth,
+            stepX: 0,
+            stepY: 0,
+            width: width,
+            height: height,
+            values: chart.values,
+            colors: chart.colors,
+            length: chart.axis.length,
+            selected: chart.selected,
+            axis: chart.axis,
+            showAxis: chart.showAxis,
+           
+        };
+
+        this.buildChart();
+    }
+
+    componentWillUpdate() {
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    }
+
+    buildChart() {
+        const {values, width, height, margin, length} = this.state;
+        let minValue = -1;
+        let maxValue = 0;
+        let horizontalLines = [];
+        let variation = 0;
+
+        values.map(elem => {
+            minElem = Math.min(...elem);
+            if (minElem < minValue)
+                minValue = minElem;
+            }
+        )
+
+        values.map(elem => {
+            maxElem = Math.max(...elem);
+            if (maxElem > maxValue)
+                maxValue = maxElem;
+            }
+        )
+
+        variation = (minValue * -1) + maxValue;
+
+        horizontalLines.push(minValue);
+        horizontalLines.push(maxValue);
+        if (minValue < -1)
+            horizontalLines.push(0);
+
+        // step between each value point on horizontal (x) axis
+        let stepX = (width - (margin.left + margin.right)) / (length - 1 || 1);
+        // step between each value point on vertical (y) axis
+        let stepY = (height - (margin.top + margin.bottom)) / variation;
+
+        this.state.minValue = minValue;
+        this.state.maxValue = maxValue;
+        this.state.variation = variation;
+        this.state.stepX = stepX;
+        this.state.stepY = stepY;
+        this.state.horizontalLines = horizontalLines;
+    }
+
+    buildPath = (values) => {
+        const {
+            width,
+            height,
+            minValue,
+            maxValue,
+            margin,
+            variation,
+            stepX,
+            stepY
+        } = this.state;
+
+        let firstPoint = true;
+        let start = minValue * stepY;
+        let path = "";
+        values.forEach((number, index) => {
+            let x = (index * stepX) + margin.left;
+            let y = -(((number - minValue) * stepY) + margin.bottom);
+            if (firstPoint) {
+                path += "M" + margin.left + " " + y;
+            } else {
+                path += " L" + x + " " + y;
+            }
+            firstPoint = false;
+        });
+
+        return path;
+    };
+
+    buildPolygon = (values) => {
+        const {
+            width,
+            height,
+            minValue,
+            maxValue,
+            margin,
+            variation,
+            stepX,
+            stepY,
+            length
+        } = this.state;
+
+        let firstPoint = true;
+        let start = -(((minValue * -1) * stepY) + margin.bottom);
+        let path = margin.left + "," + start;
+        values.forEach((number, index) => {
+            let x = (index * stepX) + margin.left;
+            let y = -(((number - minValue) * stepY) + margin.bottom);
+            if (firstPoint) {
+                path += " " + margin.left + "," + y;
+            } else {
+                path += " " + x + "," + y;
+            }
+            firstPoint = false;
+        });
+
+        path += " " + (((length - 1) * stepX) + margin.left) + "," + start;
+        path += " " + margin.left + "," + start;
+
+        return path;
+    };
+
+    getPosition(itemval, itemindex) {
+        const {
+            width,
+            height,
+            minValue,
+            maxValue,
+            margin,
+            variation,
+            stepX,
+            stepY
+        } = this.state;
+        let x = (itemindex * stepX) + margin.left
+        let y = -(((itemval - minValue) * stepY) + margin.bottom);
+        return {x: x, y: y};
+    }
     render() {
+
+        const {
+            width,
+            height,
+            values,         
+            colors,  
+        } = this.state;
+
+        const lines = values.map((item, i) => {
+            let strokeWidth = 1;
+            let stroke = colors.strokeColor[i];
+            fill = colors.fillColor[i];
+            let line = null;
+            if (colors.fillColor[i] != null) {
+                strokeWidth = 0;
+                line = (<Polygon key={"polygon_" + i} points={this.buildPolygon(item)} fill={fill} />)
+            }
+
+            let path = (<Path key={"path_" + i} d={this.buildPath(item)} fill="none" stroke={stroke} strokeWidth={strokeWidth}/>)
+            return (
+                <G key={"lines_" + i}>
+                    {path}
+                    {line}
+                </G>
+            );
+        });
+       
+
         return (
-            <Svg
-                height="100"
-                width="100"
-            >
-                <Line
-                    x1="0"
-                    y1="0"
-                    x2="100"
-                    y2="100"
-                    stroke="red"
-                    strokeWidth="2"
-                />
-            </Svg>
+            <View style={styles.container} onLayout={this.onLayout}>
+                    <Svg width={width} height={height}>
+                        <G x={0} y={height}>                     
+                            {lines}
+                        </G>
+                    </Svg>
+            </View>
         );
     }
+
 }
 
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center'
+    }
+});

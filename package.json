@@ -7,10 +7,15 @@
     "test": "jest"
   },
   "dependencies": {
+    "d3-array": "^1.2.4",
+    "d3-scale": "^2.1.2",
+    "d3-shape": "^1.2.2",
     "eject": "^0.0.4",
+    "lodash": "^4.17.10",
     "react": "16.4.1",
     "react-native": "0.56.0",
-    "react-native-linear-gradient": "^2.4.2"
+    "react-native-linear-gradient": "^2.4.2",
+    "react-native-svg": "^6.5.2"
   },
   "devDependencies": {
     "babel-jest": "23.4.2",
