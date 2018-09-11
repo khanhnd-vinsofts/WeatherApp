@@ -1,53 +1,63 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, TouchableWithoutFeedback,TextInput,StyleSheet, Dimensions } from 'react-native';
 import FirstHourWeather from '../components/WeatherTimeToday/firstHourWeather';
-// import Chart from '../components/WeatherTimeToday/lineChartWeather';
+import LineChart from '../components/WeatherTimeToday/lineChartWeather';
 
-// import SvgExample from '../components/WeatherTimeToday/lineChartWeather';
-
+const colors = {
+    chartRed:'#DC4437',
+    chartRedOpacity:'rgba(255,228,196,1)',
+  }
 
 export default class ViewTemperatureTime extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-        };
+     constructor(props) {
+    super(props);
+
+    var chart = {
+      values: [
+        [28,48,40,19,96,27,100],
+      ],
+      colors: {
+        labelsColor : [colors.chartRed],
+        fillColor : [colors.chartRedOpacity],
+        strokeColor : [colors.chartRed],
+        axisColor : 'rgba(216, 216, 216, 1)',
+        axisTextColor: 'green',
+      },
+      options: {
+        margin: {
+            left: 40,
+            right: 10,
+            top: 10,
+            bottom: 20
+        },     
+      },
+      showAxis: false,
+    	 axis: [1,2,3,4,5],
     }
 
+
+
+    this.state = {
+      chart : chart,
+     }
+
+  }
+
     render() {
+        const {chart} = this.state;
         return (
-            <View style={styles.wrapper}>
-                <View style={styles.layout}>
-                    <View style={styles.hourWeather}>
-                       <FirstHourWeather />
-                    </View>
-                    <View style={styles.lineChartWeather}>
-                        {/* <SvgExample /> */}
-                    </View>
-                </View>
-            </View>
+            <View style= {styles.container}>
+                <FirstHourWeather />
+                <LineChart height={100} width={350} chart={chart} />
+                
+            </View>       
+            
         );
     }
 }
 
 const styles = StyleSheet.create({
-    wrapper: {
-        flex: 1,     
+    container: {
+      flex: 1,
     },
-    layout: {
-        marginTop: 102,
-        width: 350,
-        height: 250,
-        borderRadius: 3,
-        flexDirection: 'column',
-        backgroundColor: 'rgba(0, 0, 0, 0.3)',
-       
-        
-    },
-    hourWeather: {
-        flex: 1,  
-    },
-    lineChartWeather: {
-        flex: 2, 
-        
-    }
-})
+  });
