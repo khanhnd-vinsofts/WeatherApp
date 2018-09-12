@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
-
+import { View, Text, StyleSheet, Image, LayoutAnimation } from 'react-native';
 export default class ViewTemperatureNow extends Component {
     constructor(props) {
         super(props);
