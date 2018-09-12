@@ -3,31 +3,24 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 import getData from '../server/currentWeatherData';
 
 export default class ViewTemperatureNow extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isLoading: true,
-            data: [],
-            temp: '',
-            temp_max: '',
-            temp_min: '',
-            wind_speed: ''
-        };
+    state = {
+        main: [],
+        wind: []
     }
 
     componentDidMount() {
         getData().then((res) => {
+            const list = res.list[0];
             this.setState({
-                data: res.list,
-                temp: res.list[0].main.temp,
-                temp_max: res.list[0].main.temp_max,
-                temp_min: res.list[0].main.temp_min,
-                wind_speed: res.list[0].wind.speed
+                main: list.main,
+                wind: list.wind
             })
         })
     }
 
     render() {
+        const {main, wind} = this.state;
+        console.log(this.state.main);
         return (
             <View style={styles.wrapper}>
                 <View style={styles.layout}>
@@ -37,7 +30,7 @@ export default class ViewTemperatureNow extends Component {
                             <Text style={styles.textTime}>14: 30</Text>
                         </View>
                         <View style={styles.temperature}>
-                            <Text style={styles.textTemperature}>{this.state.temp}</Text>
+                            <Text style={styles.textTemperature}>{main.temp}</Text>
                             <Text style={{color: "#ffffff", fontSize: 13, paddingTop:13}}>°F</Text>
                         </View>
                         <View style={styles.inforWeather}>
