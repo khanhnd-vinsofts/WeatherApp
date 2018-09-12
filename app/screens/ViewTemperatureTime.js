@@ -1,63 +1,105 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, TouchableWithoutFeedback,TextInput,StyleSheet, Dimensions } from 'react-native';
+import { View, Text, ScrollView, Image, StyleSheet } from 'react-native'
 import FirstHourWeather from '../components/WeatherTimeToday/firstHourWeather';
 import LineChart from '../components/WeatherTimeToday/lineChartWeather';
 
 const colors = {
-    chartRed:'#DC4437',
-    chartRedOpacity:'rgba(255,228,196,1)',
-  }
+    chartRed: 'rgba(255,255,0,1)',
+    chartRedOpacity: 'rgba(255,228,196,0.4)',
+}
 
 export default class ViewTemperatureTime extends Component {
-     constructor(props) {
-    super(props);
+    constructor(props) {
+        super(props);
 
-    var chart = {
-      values: [
-        [28,48,40,19,96,27,100],
-      ],
-      colors: {
-        labelsColor : [colors.chartRed],
-        fillColor : [colors.chartRedOpacity],
-        strokeColor : [colors.chartRed],
-        axisColor : 'rgba(216, 216, 216, 1)',
-        axisTextColor: 'green',
-      },
-      options: {
-        margin: {
-            left: 40,
-            right: 10,
-            top: 10,
-            bottom: 20
-        },     
-      },
-      showAxis: false,
-    	 axis: [1,2,3,4,5],
+        var chart = {
+            values: [
+                [28, 27, 25, 27, 29, 22, 19, 23, 24],
+            ],
+            colors: {
+                labelsColor: [colors.chartRed],
+                fillColor: [colors.chartRedOpacity],
+                strokeColor: [colors.chartRed],
+
+            },
+            options: {
+                margin: {
+                    left: 20,
+                    right: 0,
+                    top: 10,
+                    bottom: 20
+                },
+            },
+            showAxis: false,
+            axis: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+        }
+
+
+
+        this.state = {
+            chart: chart,
+        }
+
     }
 
-
-
-    this.state = {
-      chart : chart,
-     }
-
-  }
-
     render() {
-        const {chart} = this.state;
+        const { chart } = this.state;
         return (
-            <View style= {styles.container}>
-                <FirstHourWeather />
-                <LineChart height={100} width={350} chart={chart} />
-                
-            </View>       
-            
+            <View style={styles.container}>
+                <Text style={styles.text}>24 Hour Next</Text>
+                <ScrollView
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                    showsVerticalScrollIndicator={false}
+                >
+                    <View style={styles.layout}>
+
+                        <View style={styles.layoutTop}>
+                            <FirstHourWeather />
+                        </View>
+                        <View style={styles.layoutBottom}>
+                            <LineChart height={100} width={450} chart={chart} />
+                        </View>
+                    </View>
+                </ScrollView>
+                    <Text style={{ left: 270, textDecorationLine: 'underline', color: 'orange', fontSize: 14, bottom: 10 }}>more detail</Text>
+                    <View style={{  flexDirection: 'row', marginLeft: 10, bottom: 7 }}>
+                        <Text style={{ color: '#ffffff', fontSize: 10 }}>
+                            <Image source={require('../images/icon/ic_rain_probability.png')} style={{ width: 13, height: 13, }} />
+                            Khả năng có mưa</Text>
+                        <Text style={{ color: '#ffffff', fontSize: 10, marginLeft: 20 }}>
+                            <Image source={require('../images/icon/ic_snow_probability.png')} style={{ width: 13, height: 13 }} />
+                            Khả năng có tuyết</Text>
+                    </View>
+                </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
+        width: '97%',
+        height: 250,
+        borderRadius: 3,
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+        marginTop: 102,
     },
-  });
+    text: {
+        top: 3,
+        left: 130,
+        fontSize: 13,
+        color: '#ffffff'
+    },
+    layout: {
+        flex: 1,
+    },
+    layoutTop: {
+        flex: 2,
+    },
+    layoutBottom: {
+        flex: 3,
+        top: 20
+    }
+});
