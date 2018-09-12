@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, Image, StyleSheet } from 'react-native'
-import FirstHourWeather from '../components/WeatherTimeToday/firstHourWeather';
-import LineChart from '../components/WeatherTimeToday/lineChartWeather';
+import FirstHourWeather from '../../components/WeatherTimeToday/firstHourWeather';
+import LineChart from '../../components/WeatherTimeToday/lineChartWeather';
 
 const colors = {
     chartRed: 'rgba(255,255,0,1)',
@@ -38,12 +38,14 @@ export default class ViewTemperatureTime extends Component {
 
         this.state = {
             chart: chart,
+            width: 100,
+            height: 450
         }
 
     }
 
     render() {
-        const { chart } = this.state;
+        const { chart, width, height } = this.state;
         return (
             <View style={styles.container}>
                 <Text style={styles.text}>24 Hour Next</Text>
@@ -55,10 +57,12 @@ export default class ViewTemperatureTime extends Component {
                     <View style={styles.layout}>
 
                         <View style={styles.layoutTop}>
-                            <FirstHourWeather />
+                            <FirstHourWeather getSize={(width, height) =>{
+                                this.setState({width, height})
+                            }} />
                         </View>
                         <View style={styles.layoutBottom}>
-                            <LineChart height={100} width={450} chart={chart} />
+                            <LineChart height={height} width={width} chart={chart} />
                         </View>
                     </View>
                 </ScrollView>
@@ -88,7 +92,7 @@ const styles = StyleSheet.create({
     },
     text: {
         top: 3,
-        left: 130,
+        left: 260,
         fontSize: 13,
         color: '#ffffff'
     },

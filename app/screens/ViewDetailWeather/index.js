@@ -2,13 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import IconWeather from '../components/WeatherDetails/iconWeather'
 import DetailWeather from '../components/WeatherDetails/detailWeather'
-
 export default class ViewDetailWeather extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-        };
-    }
 
     render() {
         return (

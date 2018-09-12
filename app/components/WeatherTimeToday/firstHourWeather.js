@@ -71,6 +71,7 @@ export default class FirstHourWeather extends Component {
                 <View style={{ height: 80 }}>
                 
                     <FlatList
+                    
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
                         data={weather}

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import getData from '../server/currentWeatherData';
-
 export default class ViewTemperatureNow extends Component {
     state = {
         main: [],
