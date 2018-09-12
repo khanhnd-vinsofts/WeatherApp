@@ -5,9 +5,25 @@ export default class ViewTemperatureNow extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            data: []
         };
     }
-    
+
+    componentDidMount() {
+        return fetch('https://api.openweathermap.org/data/2.5/forecast?q=Hanoi,VN&appid=d6745886b50f6d836e68b3d5e6e87f0f')
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log(responseJson.list)
+                this.setState({
+                    data: responseJson.list,
+                }, function() {
+
+                });
+            }).catch ((err) => {
+                console.log(err);
+            })
+    }
+
     render() {
         return (
             <View style={styles.wrapper}>
@@ -34,7 +50,7 @@ export default class ViewTemperatureNow extends Component {
 
             </View>
         );
-    }
+    } 
 }
 
 const styles = StyleSheet.create({
