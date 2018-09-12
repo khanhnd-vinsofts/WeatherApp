@@ -2,13 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import IconWeather from '../components/WeatherDetails/iconWeather'
 import DetailWeather from '../components/WeatherDetails/detailWeather'
-
 export default class ViewDetailWeather extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-        };
-    }
 
     render() {
         return (
@@ -36,7 +30,7 @@ const styles = StyleSheet.create({
         height: 350,
         borderRadius: 3,
         flexDirection: 'row',
-        backgroundColor: 'rgba(0, 0, 0, 0.3)', 
+        backgroundColor: 'rgba(0, 0, 0, 0.2)', 
         top: 13
     },
     leftIcon: {
