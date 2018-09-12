@@ -68,7 +68,6 @@ export default class FirstHourWeather extends Component {
   render() {
     return (
             <View style={styles.constainer}>
-                <Text style={styles.text}>24 Hour Next</Text>
                 <View style={{ height: 80 }}>
                 
                     <FlatList
@@ -97,10 +96,5 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
     },
-    text: {
-        top:3,
-        left:263,
-        fontSize: 13,
-        color: '#ffffff'
-    }
+    
 });
