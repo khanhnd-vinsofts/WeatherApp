@@ -34,6 +34,7 @@ export default class DetailWeather extends Component {
             sysMessage: res.sys.message
           })
       });
+    
   }
   render() {
     return (
