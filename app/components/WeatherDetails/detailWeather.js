@@ -52,11 +52,11 @@ export default class DetailWeather extends Component {
             <Text style={[styles.text, styles.text1]}>Message: {this.state.sysMessage}</Text>
             <Text style={[styles.text, styles.text1]}>Country: {this.state.sysCoundtry}</Text>
         </View>
-            <TouchableHighlight>
+            {/* <TouchableHighlight>
                 <View style={styles.detailWeather}>
-                    <Text style={{textDecorationLine: 'underline', color: 'tomato', fontSize: 14,}}>Details</Text>
+                    <Text style={{textDecorationLine: 'underline', color: 'orange', fontSize: 14,}}>Details</Text>
                 </View>
-            </TouchableHighlight>
+            </TouchableHighlight> */}
       </View>
     );
   }

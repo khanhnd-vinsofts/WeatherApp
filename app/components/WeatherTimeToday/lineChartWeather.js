@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Dimensions, LayoutAnimation, StyleSheet, View, TouchableWithoutFeedback} from 'react-native';
-//If you have not Expo import https://github.com/react-native-community/react-native-svg
+import {  StyleSheet, View} from 'react-native';
 import Svg, {
     G, 
     Path,
@@ -16,11 +15,7 @@ export default class LineChart extends Component {
             chart
         } = this.props;
         this.state = {
-            minValue: 0,
-            maxValue: 0,
-            variation: 0,
             margin: chart.options.margin,
-            labelWidth: chart.options.labelWidth,
             stepX: 0,
             stepY: 0,
             width: width,
@@ -28,32 +23,15 @@ export default class LineChart extends Component {
             values: chart.values,
             colors: chart.colors,
             length: chart.axis.length,
-            selected: chart.selected,
-            axis: chart.axis,
-            showAxis: chart.showAxis,
-           
         };
 
         this.buildChart();
     }
-
-    componentWillUpdate() {
-        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    }
-
     buildChart() {
         const {values, width, height, margin, length} = this.state;
         let minValue = -1;
         let maxValue = 0;
-        let horizontalLines = [];
         let variation = 0;
-
-        values.map(elem => {
-            minElem = Math.min(...elem);
-            if (minElem < minValue)
-                minValue = minElem;
-            }
-        )
 
         values.map(elem => {
             maxElem = Math.max(...elem);
@@ -61,14 +39,8 @@ export default class LineChart extends Component {
                 maxValue = maxElem;
             }
         )
-
         variation = (minValue * -1) + maxValue;
-
-        horizontalLines.push(minValue);
-        horizontalLines.push(maxValue);
-        if (minValue < -1)
-            horizontalLines.push(0);
-
+    
         // step between each value point on horizontal (x) axis
         let stepX = (width - (margin.left + margin.right)) / (length - 1 || 1);
         // step between each value point on vertical (y) axis
@@ -79,23 +51,17 @@ export default class LineChart extends Component {
         this.state.variation = variation;
         this.state.stepX = stepX;
         this.state.stepY = stepY;
-        this.state.horizontalLines = horizontalLines;
     }
 
     buildPath = (values) => {
         const {
-            width,
-            height,
             minValue,
-            maxValue,
             margin,
-            variation,
             stepX,
             stepY
         } = this.state;
 
         let firstPoint = true;
-        let start = minValue * stepY;
         let path = "";
         values.forEach((number, index) => {
             let x = (index * stepX) + margin.left;
@@ -113,12 +79,8 @@ export default class LineChart extends Component {
 
     buildPolygon = (values) => {
         const {
-            width,
-            height,
             minValue,
-            maxValue,
             margin,
-            variation,
             stepX,
             stepY,
             length
@@ -144,23 +106,8 @@ export default class LineChart extends Component {
         return path;
     };
 
-    getPosition(itemval, itemindex) {
-        const {
-            width,
-            height,
-            minValue,
-            maxValue,
-            margin,
-            variation,
-            stepX,
-            stepY
-        } = this.state;
-        let x = (itemindex * stepX) + margin.left
-        let y = -(((itemval - minValue) * stepY) + margin.bottom);
-        return {x: x, y: y};
-    }
+   
     render() {
-
         const {
             width,
             height,
@@ -174,7 +121,7 @@ export default class LineChart extends Component {
             fill = colors.fillColor[i];
             let line = null;
             if (colors.fillColor[i] != null) {
-                strokeWidth = 0;
+                strokeWidth = 2;
                 line = (<Polygon key={"polygon_" + i} points={this.buildPolygon(item)} fill={fill} />)
             }
 
@@ -204,6 +151,5 @@ export default class LineChart extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center'
     }
 });
