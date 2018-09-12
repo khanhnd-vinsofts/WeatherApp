@@ -1,27 +1,30 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
+import getData from '../server/currentWeatherData';
 
 export default class ViewTemperatureNow extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: []
+            isLoading: true,
+            data: [],
+            temp: '',
+            temp_max: '',
+            temp_min: '',
+            wind_speed: ''
         };
     }
 
     componentDidMount() {
-        return fetch('https://api.openweathermap.org/data/2.5/forecast?q=Hanoi,VN&appid=d6745886b50f6d836e68b3d5e6e87f0f')
-            .then((response) => response.json())
-            .then((responseJson) => {
-                console.log(responseJson.list)
-                this.setState({
-                    data: responseJson.list,
-                }, function() {
-
-                });
-            }).catch ((err) => {
-                console.log(err);
+        getData().then((res) => {
+            this.setState({
+                data: res.list,
+                temp: res.list[0].main.temp,
+                temp_max: res.list[0].main.temp_max,
+                temp_min: res.list[0].main.temp_min,
+                wind_speed: res.list[0].wind.speed
             })
+        })
     }
 
     render() {
@@ -34,8 +37,8 @@ export default class ViewTemperatureNow extends Component {
                             <Text style={styles.textTime}>14: 30</Text>
                         </View>
                         <View style={styles.temperature}>
-                            <Text style={styles.textTemperature}>35</Text>
-                            <Text style={{color: "#ffffff", fontSize: 13, paddingTop:13}}>°C</Text>
+                            <Text style={styles.textTemperature}>{this.state.temp}</Text>
+                            <Text style={{color: "#ffffff", fontSize: 13, paddingTop:13}}>°F</Text>
                         </View>
                         <View style={styles.inforWeather}>
                             <Image style={styles.iconWeather} source={require('../images/icon/ic_sun_max.png')}></Image>
@@ -43,8 +46,8 @@ export default class ViewTemperatureNow extends Component {
                         </View>
                     </View>
                     <View style={styles.bottomTemperature}>
-                        <Text style={styles.textBottomTemperature}>Tối đa: 99° Tối thiểu: 2°</Text>
-                        <Text style={styles.textBottomTemperature}>Gió: Đông 2 km/h</Text>
+                        <Text style={styles.textBottomTemperature}>Tối đa: {this.state.temp_max}° Tối thiểu: {this.state.temp_min}°</Text>
+                        <Text style={styles.textBottomTemperature}>Gió: {this.state.wind_speed}m/s</Text>
                     </View>
                 </View>
 
