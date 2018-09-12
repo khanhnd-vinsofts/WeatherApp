@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {  StyleSheet, View} from 'react-native';
+import {  StyleSheet, View, Text} from 'react-native';
 import Svg, {
     G, 
     Path,
@@ -131,9 +131,10 @@ export default class LineChart extends Component {
                     {path}
                     {line}
                 </G>
+                
             );
         });
-       
+        console.log(width);
 
         return (
             <View style={styles.container} onLayout={this.onLayout}>

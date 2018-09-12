@@ -1,56 +1,37 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
-import api from '../../server/data';
+import getData from '../../server/data';
 
 export default class DetailWeather extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-        main : [],
-        mainHumi: '',
-        mainChan: '',
-        mainSea: '',
-        mainWind: '',
-        mainDew: '',
-        mainClound: '',
-        mainPress: '',
-    };
-  }
-
+    state = {
+        sys: [],
+        main: [],
+        wind: [],
+        cloud: [],
+    }
   componentDidMount(){
-      api.getData().then((res) => {
+      getData().then((res) => {
+        const list = res.list[0];
           this.setState({
-            main: res.main,
-            mainTemp: res.main.humidity,
-            mainChan: res.main.temp,
-            mainSea: res.main.temp_min,
-            mainWind: res.main.temp_max,
-            mainDew: res.main.sea_level,
-            mainClound: res.main.grnd_level,
-            mainPress: res.main.pressure,
-            windSpeed: res.wind.speed,
-            windDeg: res.wind.deg,
-            sysCoundtry: res.sys.country,
-            sysMessage: res.sys.message
+            main: list.main,
+            sys: list.sys,
+            wind: list.wind,
+            cloud: list.clouds
           })
       });
     
   }
   render() {
+      const {main, wind, sys, cloud} = this.state;
     return (
       <View style={styles.wrapper}> 
         <View style={styles.container}>
-            <Text style={styles.text}>Humidity: {this.state.mainTemp}%</Text>
-            <Text style={[styles.text, styles.text1]}>Chance of rain: {this.state.mainChan}%</Text>
-            <Text style={[styles.text, styles.text1]}>Precipitation: {this.state.mainSea} mm</Text>
-            <Text style={[styles.text, styles.text1]}>Wind child: {this.state.mainWind}</Text>
-            <Text style={[styles.text, styles.text1]}>Dew point: {this.state.mainDew}</Text>
-            <Text style={[styles.text, styles.text1]}>Clound cover: {this.state.mainClound} (Moderate)</Text>
-            <Text style={[styles.text, styles.text1]}>Pressure: {this.state.mainPress} mbar</Text>
-            <Text style={[styles.text, styles.text1]}>Speed: {this.state.windSpeed}</Text>
-            <Text style={[styles.text, styles.text1]}>Deg: {this.state.windDeg}</Text>
-            <Text style={[styles.text, styles.text1]}>Message: {this.state.sysMessage}</Text>
-            <Text style={[styles.text, styles.text1]}>Country: {this.state.sysCoundtry}</Text>
+            <Text style={styles.text}>Humidity: {main.humidity || ""}%</Text>
+            <Text style={[styles.text, styles.text1]}>Cloud cover: {cloud.all} (Moderate)</Text>
+            <Text style={[styles.text, styles.text1]}>Pressure: {main.pressure} mbar</Text>
+            <Text style={[styles.text, styles.text1]}>Speed: {wind.speed}</Text>
+            <Text style={[styles.text, styles.text1]}>Deg: {wind.deg}</Text>
+            <Text style={[styles.text, styles.text1]}>Country: {sys.country}</Text>
         </View>
             {/* <TouchableHighlight>
                 <View style={styles.detailWeather}>
