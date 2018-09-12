@@ -11,7 +11,7 @@ export default class LinearGradients extends Component {
                 flexDirection: 'column',
                 justifyContent: 'flex-end'
             }}>
-                <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={{ width: 11, height: (max-min)*20, borderRadius: 11}}></LinearGradient>
+                <LinearGradient colors={['#ffff00', '#66ff33',]} style={{ width: 11, height: (max-min)*20, borderRadius: 11}}></LinearGradient>
             </View>
         )
     }
