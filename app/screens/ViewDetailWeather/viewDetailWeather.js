@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import IconWeather from '../../components/WeatherDetails/iconWeather'
-import DetailWeather from '../../components/WeatherDetails/detailWeather'
-export default class ViewDetailWeather extends Component {
+import { View, Text, StyleSheet, ImageBackground } from 'react-native';
+import IconWeather from './iconWeather'
+import DetailWeather from './detailWeather'
+export default class ViewDetail extends Component {
 
     render() {
         return (
