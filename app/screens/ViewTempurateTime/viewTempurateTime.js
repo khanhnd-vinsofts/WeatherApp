@@ -41,7 +41,6 @@ export default class ViewTime extends Component {
             width: 450,
             height: 120
         }
-
     }
 
     render() {
@@ -57,7 +56,7 @@ export default class ViewTime extends Component {
                     <View style={styles.layout}>
 
                         <View style={styles.layoutTop}>
-                            <FirstHourWeather  />
+                            <FirstHourWeather />
                         </View>
                         <View style={styles.layoutBottom}>
                             <LineChart height={height} width={width} chart={chart} />
@@ -85,7 +84,7 @@ const styles = StyleSheet.create({
         borderRadius: 3,
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
-        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+        backgroundColor: 'rgba(0, 0, 0, 0.3)',
         marginTop: 102,
     },
     text: {
