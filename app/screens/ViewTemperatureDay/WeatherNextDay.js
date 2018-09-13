@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, FlatList, ActivityIndicator, Image } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Image } from 'react-native';
 import LinearGradients from './LinearGradient';
 
 export default class WeatherNextDay extends Component {

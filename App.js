@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import { StyleSheet, ImageBackground, View, ScrollView } from 'react-native';
-import { ViewTime, ViewDetail, TemperatureNow } from './app/screens';
+import { ViewTime, ViewDetail, TemperatureNow, TemperatureDay } from './app/screens';
 
 const image = require('./app/images/background/sleet_bg.jpg')
 export default class App extends Component {
@@ -22,6 +22,9 @@ export default class App extends Component {
 						</View>
 						<View style={styles.layout1}>
 							<ViewTime />
+						</View>
+						<View style={styles.layout1}>
+							<TemperatureDay />
 						</View>
 						<View style={styles.layout1}>
 							<ViewDetail />

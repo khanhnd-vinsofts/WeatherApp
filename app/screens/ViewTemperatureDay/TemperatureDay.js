@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text,StyleSheet } from 'react-native';
-import WeatherNextDay from '../../components/WeatherNextDay/WeatherNextDay';
+import { View, StyleSheet } from 'react-native';
+import WeatherNextDay from '../ViewTemperatureDay/WeatherNextDay';
 
 export default class ViewTemperatureDay extends Component {
     render() {
