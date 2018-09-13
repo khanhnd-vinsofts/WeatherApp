@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, Image, StyleSheet } from 'react-native'
-import FirstHourWeather from '../../components/WeatherTimeToday/firstHourWeather';
-import LineChart from '../../components/WeatherTimeToday/lineChartWeather';
+import FirstHourWeather from './firstHourWeather';
+import LineChart from './lineChartWeather';
 
 const colors = {
     chartRed: 'rgba(255,255,0,1)',
     chartRedOpacity: 'rgba(255,228,196,0.4)',
 }
 
-export default class ViewTemperatureTime extends Component {
+export default class ViewTime extends Component {
     constructor(props) {
         super(props);
 
@@ -38,8 +38,8 @@ export default class ViewTemperatureTime extends Component {
 
         this.state = {
             chart: chart,
-            width: 100,
-            height: 450
+            width: 450,
+            height: 120
         }
 
     }
@@ -57,9 +57,7 @@ export default class ViewTemperatureTime extends Component {
                     <View style={styles.layout}>
 
                         <View style={styles.layoutTop}>
-                            <FirstHourWeather getSize={(width, height) =>{
-                                this.setState({width, height})
-                            }} />
+                            <FirstHourWeather  />
                         </View>
                         <View style={styles.layoutBottom}>
                             <LineChart height={height} width={width} chart={chart} />
@@ -69,10 +67,10 @@ export default class ViewTemperatureTime extends Component {
                     <Text style={{ left: 270, textDecorationLine: 'underline', color: 'orange', fontSize: 14, bottom: 10 }}>more detail</Text>
                     <View style={{  flexDirection: 'row', marginLeft: 10, bottom: 7 }}>
                         <Text style={{ color: '#ffffff', fontSize: 10 }}>
-                            <Image source={require('../images/icon/ic_rain_probability.png')} style={{ width: 13, height: 13, }} />
+                            <Image source={require('../../images/icon/ic_rain_probability.png')} style={{ width: 13, height: 13, }} />
                             Khả năng có mưa</Text>
                         <Text style={{ color: '#ffffff', fontSize: 10, marginLeft: 20 }}>
-                            <Image source={require('../images/icon/ic_snow_probability.png')} style={{ width: 13, height: 13 }} />
+                            <Image source={require('../../images/icon/ic_snow_probability.png')} style={{ width: 13, height: 13 }} />
                             Khả năng có tuyết</Text>
                     </View>
                 </View>
@@ -104,6 +102,8 @@ const styles = StyleSheet.create({
     },
     layoutBottom: {
         flex: 3,
-        top: 20
+        top: 5
     }
 });
+
+export {FirstHourWeather, LineChart};
