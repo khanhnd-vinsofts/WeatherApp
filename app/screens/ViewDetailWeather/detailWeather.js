@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
-import getData from '../../server/data';
+import {getData} from '../../server';
 
 export default class DetailWeather extends Component {
     state = {

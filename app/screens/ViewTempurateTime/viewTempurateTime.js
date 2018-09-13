@@ -38,7 +38,7 @@ export default class ViewTime extends Component {
 
         this.state = {
             chart: chart,
-            width: 450,
+            width: 2050,
             height: 120
         }
     }
