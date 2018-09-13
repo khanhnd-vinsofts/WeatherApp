@@ -1,4 +1,4 @@
-import data from './data';
-import HorizontalData from './HorizontalData';
+import getData from './data';
+import {weather, getWeather} from './HorizontalData';
 
-export {data, HorizontalData}
+export {getData, weather, getWeather}

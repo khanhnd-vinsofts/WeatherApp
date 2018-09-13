@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
-import { data } from '../../server';
+import { getData } from '../../server';
 
 export default class ViewTemperatureNow extends Component {
     state = {
@@ -9,7 +9,7 @@ export default class ViewTemperatureNow extends Component {
     }
 
     componentDidMount() {
-        data().then((res) => {
+        getData().then((res) => {
             const list = res.list[0];
             this.setState({
                 main: list.main,
