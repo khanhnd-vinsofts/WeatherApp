@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ImageBackground, ScrollView } from 'react-native';
-import ViewTemperatureNow from './ViewTemperatureNow';
-import ViewTemperatureTime from './ViewTemperatureTime';
-import ViewTemperatureDay from './ViewTemperatureDay';
-import ViewDetailWeather from './ViewDetailWeather'
+import ViewTemperatureNow from './ViewTempuratureNow/viewTemperatureNow';
+import ViewTemperatureTime from './ViewTempurateTime/viewTemperatureTime';
+import ViewTemperatureDay from './ViewTemperatureDay/viewTemperatureDay';
+import ViewDetailWeather from './ViewDetailWeather/viewDetailWeather'
 
 const image = require('../images/background/nobg.jpg')
 export default class Index extends Component {

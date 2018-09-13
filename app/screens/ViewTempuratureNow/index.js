@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
-import getData from '../server/currentWeatherData';
+import {currentWeatherData} from '../../server';
 export default class ViewTemperatureNow extends Component {
     state = {
         main: [],
@@ -8,7 +8,7 @@ export default class ViewTemperatureNow extends Component {
     }
 
     componentDidMount() {
-        getData().then((res) => {
+        currentWeatherData.then((res) => {
             const list = res.list[0];
             this.setState({
                 main: list.main,
