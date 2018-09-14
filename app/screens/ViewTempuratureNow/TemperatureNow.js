@@ -5,7 +5,8 @@ import { getData } from '../../server';
 export default class ViewTemperatureNow extends Component {
     state = {
         main: [],
-        wind: []
+        wind: [],
+        weather: [],
     }
 
     componentDidMount() {
@@ -13,34 +14,39 @@ export default class ViewTemperatureNow extends Component {
             const list = res.list[0];
             this.setState({
                 main: list.main,
-                wind: list.wind
+                wind: list.wind,
+                weather: list.weather[0],
             })
         })
     }
 
     render() {
-        const {main, wind} = this.state;
-        console.log(this.state.main);
+        const {main, wind, weather } = this.state;
+        const now = moment(currentDate).format('dddd DD-MM-YYYY');
+        const currentDate = new Date();
+        const time = moment(currentDate).format('h:mm a');
+        console.log(now);
+        
         return (
             <View style={styles.wrapper}>
                 <View style={styles.layout}>
                     <View style={styles.topTemperature}>
                         <View style={styles.dateTime}>
-                            <Text style={styles.textDate}>Th 4 05-09-2018</Text>
-                            <Text style={styles.textTime}>14: 30</Text>
+                            <Text style={styles.textDate}>{now}</Text>
+                            <Text style={styles.textTime}>{time}</Text>
                         </View>
                         <View style={styles.temperature}>
                             <Text style={styles.textTemperature}>{main.temp}</Text>
                             <Text style={{color: "#ffffff", fontSize: 13, paddingTop:13}}>°C</Text>
                         </View>
                         <View style={styles.inforWeather}>
-                            <Image style={styles.iconWeather} source={require('../../images/icon/ic_sun_max.png')}></Image>
-                            <Text style={{color: "#ffffff", fontSize: 12, textAlign: 'center', fontStyle: 'italic'}}>Ẩm ướt & Trời nhiều mây</Text>
+                            <Image style={styles.iconWeather} source={{uri: `http://openweathermap.org/img/w/${weather.icon}.png`}}></Image>
+                            <Text style={{color: "#ffffff", fontSize: 12, textAlign: 'center', fontStyle: 'italic'}}>{weather.description}</Text>
                         </View>
                     </View>
                     <View style={styles.bottomTemperature}>
-                        <Text style={styles.textBottomTemperature}>Tối đa: {this.state.temp_max}° Tối thiểu: {this.state.temp_min}°</Text>
-                        <Text style={styles.textBottomTemperature}>Gió: {this.state.wind_speed}m/s</Text>
+                        <Text style={styles.textBottomTemperature}>Tối đa: {main.temp_max}° Tối thiểu: {main.temp_min}°</Text>
+                        <Text style={styles.textBottomTemperature}>Gió: {wind.speed}m/s</Text>
                     </View>
                 </View>
 
@@ -103,8 +109,8 @@ const styles = StyleSheet.create({
         paddingTop: 10,
     },
     iconWeather: {
-        width: 55,
-        height: 55,
+        width: 75,
+        height: 75,
     }
 
 })
