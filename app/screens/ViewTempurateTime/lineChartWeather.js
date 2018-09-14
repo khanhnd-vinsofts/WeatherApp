@@ -3,7 +3,7 @@ import {  StyleSheet, View, Text} from 'react-native';
 import Svg, {
     G, 
     Path,
-    Polygon, 
+    Polygon
 } from 'react-native-svg';
 
 export default class LineChart extends Component {
