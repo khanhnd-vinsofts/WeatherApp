@@ -7,7 +7,8 @@ export default class FirstHourWeather extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-           list: []
+           list: [],
+
             
         }
     }
@@ -19,8 +20,8 @@ export default class FirstHourWeather extends Component {
         })
     }
     render() {
-        // const {dt_txt, weather} = this.state;
-        // console.log(weather, 'sdsdsdsdsd');
+        // giới hạn bản ghi
+        let listItems = this.state.list.splice(0, 8);
         return (
             <View style={styles.constainer}>
                 <View style={{ height: 80 }}>
@@ -29,11 +30,12 @@ export default class FirstHourWeather extends Component {
 
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
-                        data={this.state.list}
+                        data={listItems}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) => {
-                            // console.log(item.dt_txt);
-                            const date = item.dt_txt.substring(11, 16);
+                            
+                            // hiển thị giờ
+                           const date = item.dt_txt.substring(11, 16); 
                             let weatherItem = weather[index%weather.length];
                             // console.log({uri: `http://openweathermap.org/img/w/${item.weather[0].icon}.png`});
                             return (

@@ -14,7 +14,7 @@ export default class ViewTime extends Component {
 
         var chart = {
             values: [
-                [28, 27, 25, 27, 29, 22, 19, 23, 24],
+                [28, 31, 25, 33, 21, 22, 29, 23],
             ],
             colors: {
                 labelsColor: [colors.chartRed],
@@ -31,14 +31,14 @@ export default class ViewTime extends Component {
                 },
             },
             showAxis: false,
-            axis: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+            axis: [1, 2, 3, 4, 5, 6, 7, 8],
         }
 
 
 
         this.state = {
             chart: chart,
-            width: 2050,
+            width: 390,
             height: 120
         }
     }

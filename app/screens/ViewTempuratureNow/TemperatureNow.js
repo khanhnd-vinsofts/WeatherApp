@@ -25,9 +25,8 @@ export default class ViewTemperatureNow extends Component {
         const {main, wind, weather } = this.state;
         const now = moment(currentDate).format('dddd DD-MM-YYYY');
         const currentDate = new Date();
-        const time = moment(currentDate).format('h:mm a');
+        const time = moment(currentDate).format('H: MM');
         console.log(now);
-        
         return (
             <View style={styles.wrapper}>
                 <View style={styles.layout}>
@@ -110,8 +109,8 @@ const styles = StyleSheet.create({
         paddingTop: 10,
     },
     iconWeather: {
-        width: 75,
-        height: 75,
+        width: '60%',
+        height: '60%',
     }
 
 })
