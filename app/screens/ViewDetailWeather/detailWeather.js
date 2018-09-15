@@ -23,11 +23,12 @@ export default class DetailWeather extends Component {
   }
   render() {
       const {main, wind, sys, cloud} = this.state;
+      console.log(main, wind, sys, cloud);
     return (
       <View style={styles.wrapper}> 
         <View style={styles.container}>
             <Text style={styles.text}>Humidity: {main.humidity || ""}%</Text>
-            <Text style={[styles.text, styles.text1]}>Cloud cover: {cloud.all} (Moderate)</Text>
+            <Text style={[styles.text, styles.text1]}>Cloud cover: {cloud.all} %</Text>
             <Text style={[styles.text, styles.text1]}>Pressure: {main.pressure} mbar</Text>
             <Text style={[styles.text, styles.text1]}>Speed: {wind.speed}</Text>
             <Text style={[styles.text, styles.text1]}>Deg: {wind.deg}</Text>

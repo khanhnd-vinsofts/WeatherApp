@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import {  StyleSheet, View, Text} from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, View } from 'react-native';
 import Svg, {
-    G, 
+    G,
     Path,
-    Polygon
+    Polygon,
 } from 'react-native-svg';
 
 export default class LineChart extends Component {
@@ -28,7 +28,7 @@ export default class LineChart extends Component {
         this.buildChart();
     }
     buildChart() {
-        const {values, width, height, margin, length} = this.state;
+        const { values, width, height, margin, length } = this.state;
         let minValue = -1;
         let maxValue = 0;
         let variation = 0;
@@ -37,10 +37,10 @@ export default class LineChart extends Component {
             maxElem = Math.max(...elem);
             if (maxElem > maxValue)
                 maxValue = maxElem;
-            }
+        }
         )
         variation = (minValue * -1) + maxValue;
-    
+
         // step between each value point on horizontal (x) axis
         let stepX = (width - (margin.left + margin.right)) / (length - 1 || 1);
         // step between each value point on vertical (y) axis
@@ -106,13 +106,13 @@ export default class LineChart extends Component {
         return path;
     };
 
-   
+
     render() {
         const {
             width,
             height,
-            values,         
-            colors,  
+            values,
+            colors,
         } = this.state;
 
         const lines = values.map((item, i) => {
@@ -125,24 +125,26 @@ export default class LineChart extends Component {
                 line = (<Polygon key={"polygon_" + i} points={this.buildPolygon(item)} fill={fill} />)
             }
 
-            let path = (<Path key={"path_" + i} d={this.buildPath(item)} fill="none" stroke={stroke} strokeWidth={strokeWidth}/>)
+            let path = (<Path key={"path_" + i} d={this.buildPath(item)} fill="none" stroke={stroke} strokeWidth={strokeWidth} />)
             return (
                 <G key={"lines_" + i}>
+                     
                     {path}
                     {line}
+                   
                 </G>
-                
+
             );
         });
         console.log(width);
 
         return (
             <View style={styles.container} onLayout={this.onLayout}>
-                    <Svg width={width} height={height}>
-                        <G x={0} y={height}>                     
-                            {lines}
-                        </G>
-                    </Svg>
+                <Svg width={width} height={height}>
+                    <G x={0} y={height}>
+                        {lines}
+                    </G>
+                </Svg>
             </View>
         );
     }

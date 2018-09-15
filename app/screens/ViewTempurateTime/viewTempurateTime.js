@@ -67,10 +67,10 @@ export default class ViewTime extends Component {
                     <View style={{  flexDirection: 'row', marginLeft: 10, bottom: 7 }}>
                         <Text style={{ color: '#ffffff', fontSize: 10 }}>
                             <Image source={require('../../images/icon/ic_rain_probability.png')} style={{ width: 13, height: 13, }} />
-                            Khả năng có mưa</Text>
+                            Chance of rain</Text>
                         <Text style={{ color: '#ffffff', fontSize: 10, marginLeft: 20 }}>
                             <Image source={require('../../images/icon/ic_snow_probability.png')} style={{ width: 13, height: 13 }} />
-                            Khả năng có tuyết</Text>
+                            Chance of snow</Text>
                     </View>
                 </View>
         );
