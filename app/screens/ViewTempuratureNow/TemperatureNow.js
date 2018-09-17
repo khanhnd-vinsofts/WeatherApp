@@ -8,6 +8,7 @@ export default class ViewTemperatureNow extends Component {
         main: [],
         wind: [],
         weather: [],
+        dt: '',
     }
 
     componentDidMount() {
@@ -17,16 +18,18 @@ export default class ViewTemperatureNow extends Component {
                 main: list.main,
                 wind: list.wind,
                 weather: list.weather[0],
+                dt: list.dt
             })
         })
     }
 
     render() {
-        const {main, wind, weather } = this.state;
+        const {main, wind, weather, dt } = this.state;
         const now = moment(currentDate).format('dddd DD-MM-YYYY');
         const currentDate = new Date();
         const time = moment(currentDate).format('H: MM');
-        console.log(now);
+        console.log(now, time);
+
         return (
             <View style={styles.wrapper}>
                 <View style={styles.layout}>
@@ -45,8 +48,8 @@ export default class ViewTemperatureNow extends Component {
                         </View>
                     </View>
                     <View style={styles.bottomTemperature}>
-                        <Text style={styles.textBottomTemperature}>Tối đa: {main.temp_max}° Tối thiểu: {main.temp_min}°</Text>
-                        <Text style={styles.textBottomTemperature}>Gió: {wind.speed}m/s</Text>
+                        <Text style={styles.textBottomTemperature}>Max: {main.temp_max}° Min: {main.temp_min}°</Text>
+                        <Text style={styles.textBottomTemperature}>Wind: {wind.speed}m/s</Text>
                     </View>
                 </View>
 

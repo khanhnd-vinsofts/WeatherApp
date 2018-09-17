@@ -74,7 +74,7 @@ export default class WeatherNextDay extends Component {
             <View style={styles.constainer}>
                 <View>
                     <View style={{ paddingTop: 7 }}>
-                        <Text style={styles.title}>Chạm vào một ngày để xem dự báo theo giờ</Text>
+                        <Text style={styles.title}>Touch a day to see forecast by hourly</Text>
                     </View>
                     <FlatList
                         horizontal={true}
@@ -83,59 +83,26 @@ export default class WeatherNextDay extends Component {
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item }) => {
                             return (
-                                <View style={{
-                                    marginTop: 10,
-                                    flexDirection: 'column',
-                                    alignItems: 'center',
-                                    width: 55,
-                                }}>
-                                    <View style={{
-                                        width: 50,
-                                        height: 30,
-                                        borderWidth: 1,
-                                        borderColor: '#ffffff',
-                                        borderRadius: 5,
-                                        justifyContent: 'center',
-                                        alignItems: 'center'
-                                    }}>
-                                        <Text style={{
-                                            fontSize: 15,
-                                            color: 'white',
-                                            textDecorationLine: "underline",
-                                        }}>
+                                <View style={styles.viewDay}>
+                                    <View style={styles.weekDays}>
+                                        <Text style={styles.textWeekDays}>
                                             {item.name}
                                         </Text>
                                     </View>
-                                    <Image style={{
-                                        width: 20,
-                                        height: 20,
-                                        marginTop: 5
-                                    }} source={item.image} resizeMode="contain"></Image>
-                                    <Text style={{
-                                        fontSize: 10,
-                                        color: 'orange',
-                                    }}>
+                                    <Image style={styles.iconWeather} source={item.image} resizeMode="contain"></Image>
+                                    <Text style={styles.textHumidity}>
                                         <Image
-                                            style={{
-                                                width: 13,
-                                                height: 13,
-                                            }}
+                                            style={styles.imageHumidity}
                                             source={item.icon}
                                         />
                                         {item.ratio}%
                                     </Text>
-                                    <View style={{
-                                        alignItems: 'center',
-                                        marginTop: 5,
-                                        flexDirection: 'column',
-                                        justifyContent: 'flex-end',
-                                        height: 260
-                                    }}>
-                                        <Text style={{ fontSize: 12, color: "#ffffff", marginTop: 10, marginBottom: 7 }}>{item.max}°</Text>
+                                    <View style={styles.viewGradients}>
+                                        <Text style={styles.textTemperature}>{item.max}°</Text>
                                         <View>
                                             <LinearGradients max={item.max} min={item.min}></LinearGradients>
                                         </View>
-                                        <Text style={{ fontSize: 12, color: "#ffffff", marginTop: 10, marginBottom: 3 }}>{item.min}°</Text>
+                                        <Text style={styles.textTemperature}>{item.min}°</Text>
                                     </View>
                                 </View>
                             );
@@ -143,12 +110,8 @@ export default class WeatherNextDay extends Component {
                     >
 
                     </FlatList>
-                    <View style={{
-                        flexDirection: 'row',
-                        justifyContent: 'flex-end',
-                        alignItems: 'center'
-                    }}>
-                        <Text style={{ color: "orange", fontSize: 14, textDecorationLine: "underline", paddingRight: 10, paddingBottom: 2 }}>more details</Text>
+                    <View style={styles.viewDetail}>
+                        <Text style={styles.textDetail}>more details</Text>
                     </View>
                 </View>
             </View>
@@ -161,9 +124,67 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
     },
     title: {
-        color: "#ffffff", 
-        fontSize: 12, 
-        textAlign: 'center', 
+        color: "#ffffff",
+        fontSize: 12,
+        textAlign: 'center',
         fontStyle: 'italic'
+    },
+    viewDay: {
+        marginTop: 10,
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: 75,
+    },
+    weekDays: {
+        width: 65,
+        height: 35,
+        borderWidth: 1,
+        borderColor: '#ffffff',
+        borderRadius: 5,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    textWeekDays: {
+        fontSize: 15,
+        color: 'white',
+        textDecorationLine: "underline",
+    },
+    iconWeather: {
+        width: 20,
+        height: 20,
+        marginTop: 5
+    },
+    textHumidity: {
+        fontSize: 10,
+        color: 'orange',
+    },
+    imageHumidity: {
+        width: 13,
+        height: 13,
+    },
+    viewGradients: {
+        alignItems: 'center',
+        marginTop: 5,
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+        height: 260
+    },
+    textTemperature: {
+        fontSize: 12,
+        color: "#ffffff",
+        marginTop: 10,
+        marginBottom: 7
+    },
+    viewDetail: {
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center'
+    },
+    textDetail: {
+        color: "orange",
+        fontSize: 14,
+        textDecorationLine: "underline",
+        paddingRight: 10,
+        paddingBottom: 5
     }
 });

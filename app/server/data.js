@@ -1,4 +1,4 @@
-const getData = function(){
+const getData = () => {
     var url = `https://api.openweathermap.org/data/2.5/find?q=hanoi&units=metric&appid=d6745886b50f6d836e68b3d5e6e87f0f`;
     return fetch(url).then((res) => res.json());
 }
