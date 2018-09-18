@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     wrapper: {
         justifyContent: 'center',
         alignItems: 'center',
-        top: 90,
+        top: 10,
     },
     layout: {
         width: 350,

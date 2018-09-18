@@ -128,10 +128,8 @@ export default class LineChart extends Component {
             let path = (<Path key={"path_" + i} d={this.buildPath(item)} fill="none" stroke={stroke} strokeWidth={strokeWidth} />)
             return (
                 <G key={"lines_" + i}>
-                     
                     {path}
                     {line}
-                   
                 </G>
 
             );

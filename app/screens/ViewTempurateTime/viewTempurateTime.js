@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, Image, StyleSheet } from 'react-native'
+import { View, Text, ScrollView, Image, StyleSheet, FlatList } from 'react-native'
 import FirstHourWeather from './firstHourWeather';
 import LineChart from './lineChartWeather';
+import { getWeather } from '../../server';
 
 const colors = {
     chartRed: 'rgba(255,255,0,1)',
@@ -9,12 +10,28 @@ const colors = {
 }
 
 export default class ViewTime extends Component {
-    constructor(props) {
-        super(props);
+ 
+        state = {
+            width: 390,
+            height: 100,
+            list: [],
+        }
+    
+    componentDidMount() {
+        getWeather().then((res) => {
+            const list = res.list.splice(0, 8);
+            this.setState({
+                list: list,
+            })
+        })
 
+    }
+
+    render() {
+        const { width, height, list } = this.state;
         var chart = {
             values: [
-                [28, 31, 25, 33, 21, 22, 29, 23],
+                [26, 25, 24, 24, 23, 24, 25, 25],
             ],
             colors: {
                 labelsColor: [colors.chartRed],
@@ -34,17 +51,6 @@ export default class ViewTime extends Component {
             axis: [1, 2, 3, 4, 5, 6, 7, 8],
         }
 
-
-
-        this.state = {
-            chart: chart,
-            width: 390,
-            height: 120
-        }
-    }
-
-    render() {
-        const { chart, width, height } = this.state;
         return (
             <View style={styles.container}>
                 <Text style={styles.text}>24 Hour Next</Text>
@@ -59,20 +65,43 @@ export default class ViewTime extends Component {
                             <FirstHourWeather />
                         </View>
                         <View style={styles.layoutBottom}>
-                            <LineChart height={height} width={width} chart={chart} />
+                            <FlatList
+                                style={{ top: 80, left: 15 }}
+                                horizontal={true}
+                                showsHorizontalScrollIndicator={false}
+                                data={list}
+                                keyExtractor={(item, index) => index.toString()}
+                                renderItem={({ item, index }) => {
+                                    const Temp = Math.ceil(item.main.temp - 273.15);
+                                    return (
+                                        <View style={{
+                                            flex: 1,
+                                            flexDirection: 'column',
+                                            width: 52
+                                        }}>
+                                            <Text style={{ fontSize: 12, color: '#ffffff' }}>
+                                                {Temp}°
+                                            </Text>
+                                        </View>
+                                    )
+                                }}
+                            />
+                            <View style={{ top: 75 }}>
+                                <LineChart height={height} width={width} chart={chart} />
+                            </View>
                         </View>
                     </View>
                 </ScrollView>
-                    <Text style={{ left: 270, textDecorationLine: 'underline', color: 'orange', fontSize: 14, bottom: 10 }}>more detail</Text>
-                    <View style={{  flexDirection: 'row', marginLeft: 10, bottom: 7 }}>
-                        <Text style={{ color: '#ffffff', fontSize: 10 }}>
-                            <Image source={require('../../images/icon/ic_rain_probability.png')} style={{ width: 13, height: 13, }} />
-                            Chance of rain</Text>
-                        <Text style={{ color: '#ffffff', fontSize: 10, marginLeft: 20 }}>
-                            <Image source={require('../../images/icon/ic_snow_probability.png')} style={{ width: 13, height: 13 }} />
-                            Chance of snow</Text>
-                    </View>
+                <Text style={{ left: 270, textDecorationLine: 'underline', color: 'orange', fontSize: 14, bottom: 10 }}>more detail</Text>
+                <View style={{ flexDirection: 'row', marginLeft: 10, bottom: 7 }}>
+                    <Text style={{ color: '#ffffff', fontSize: 10 }}>
+                        <Image source={require('../../images/icon/ic_rain_probability.png')} style={{ width: 13, height: 13, }} />
+                        Chance of rain</Text>
+                    <Text style={{ color: '#ffffff', fontSize: 10, marginLeft: 20 }}>
+                        <Image source={require('../../images/icon/ic_snow_probability.png')} style={{ width: 13, height: 13 }} />
+                        Chance of snow</Text>
                 </View>
+            </View>
         );
     }
 }
@@ -85,7 +114,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
         backgroundColor: 'rgba(0, 0, 0, 0.3)',
-        marginTop: 102,
+        marginTop: 22,
     },
     text: {
         top: 3,
@@ -96,13 +125,6 @@ const styles = StyleSheet.create({
     layout: {
         flex: 1,
     },
-    layoutTop: {
-        flex: 2,
-    },
-    layoutBottom: {
-        flex: 3,
-        top: 5
-    }
 });
 
-export {FirstHourWeather, LineChart};
+export { FirstHourWeather, LineChart };

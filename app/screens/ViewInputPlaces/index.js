@@ -1,3 +1,3 @@
-import InputAddress from './inputPlaces';
+import AddressPage from './AddressPage';
 
-export {InputAddress};
+export {AddressPage};
